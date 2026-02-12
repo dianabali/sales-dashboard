@@ -1,15 +1,14 @@
 # Sales Dashboard
 
-A modern, interactive sales analytics dashboard built with **Next.js 15**, **React 19**, and **Tailwind CSS**. Visualize your sales data with multiple chart types and powerful filtering capabilities.
+A modern, interactive sales analytics dashboard built with **Next.js**, **React**, and **Tailwind CSS**. Visualize your sales data with multiple chart types and powerful filtering capabilities.
 
 ## 🎯 Features
 
-- 📊 **Multiple Chart Types** - View data as Bar, Line, or Pie charts
-- 🔍 **Custom Filtering** - Set custom sales thresholds to filter data
-- 📈 **Real-time Analytics** - View total sales, revenue, and averages
-- 🎨 **Beautiful UI** - Clean, modern design with Tailwind CSS
-- 📱 **Fully Responsive** - Works seamlessly on all devices
-- ⚡ **Fast Performance** - Built with Next.js for optimal speed
+- **Multiple Chart Types** - View data as Bar, Line, or Pie charts
+- **Custom Filtering** - Set custom sales thresholds to filter data
+- **Real-time Analytics** - View total sales, revenue, and averages
+- **Fully Responsive** - Works seamlessly on all devices
+- **Fast Performance** - Built with Next.js for optimal speed
 
 ## 🚀 Quick Start
 
@@ -61,22 +60,6 @@ A modern, interactive sales analytics dashboard built with **Next.js 15**, **Rea
   - Total Sales count
   - Total Revenue (in dollars)
   - Average Sales per period
-
-## 🛠️ Available Commands
-
-```bash
-# Start development server
-npm run dev
-
-# Build for production
-npm run build
-
-# Start production server
-npm start
-
-# Run linter
-npm run lint
-```
 
 ## 📁 Project Structure
 
@@ -130,56 +113,12 @@ const MOCK_SALES_DATA: SalesData[] = [
 
 ## 📦 Technologies Used
 
-- **Next.js 15** - React framework
-- **React 19** - UI library
+- **Next.js** - React framework
+- **React** - UI library
 - **TypeScript** - Type safety
 - **Tailwind CSS** - Styling
 - **Recharts** - Data visualization
 - **Quicksand Font** - Custom typography
-
-## 🚀 Deployment
-
-### Deploy to Vercel (Recommended)
-```bash
-npm i -g vercel
-vercel
-```
-
-### Build for Production
-```bash
-npm run build
-npm start
-```
-
-## 📚 Documentation
-
-For more detailed information, see:
-- **[SETUP_INSTRUCTIONS.md](SETUP_INSTRUCTIONS.md)** - In-depth setup and customization guide
-- **[ARCHITECTURE.md](ARCHITECTURE.md)** - Technical architecture and design patterns
-- **[GITHUB_SETUP.md](GITHUB_SETUP.md)** - GitHub and deployment instructions
-
-## 🐛 Troubleshooting
-
-**Port 3000 already in use?**
-```bash
-npm run dev -- -p 3001
-```
-
-**Dependencies not installing?**
-```bash
-rm -rf node_modules package-lock.json
-npm install
-```
-
-**Font not displaying?**
-- Clear your browser cache (Ctrl+Shift+Delete)
-- Restart the dev server (`npm run dev`)
-
-## 📧 Need Help?
-
-- Check the [SETUP_INSTRUCTIONS.md](SETUP_INSTRUCTIONS.md) file
-- Review component prop types in the source code
-- Check browser console for error messages
 
 ## 📄 License
 
@@ -187,4 +126,4 @@ MIT License - Feel free to use this project for personal or commercial purposes.
 
 ---
 
-**Happy analyzing!** 📊
+### You can find this project deployed in Vercel using this link: https://sales-dashboard-blue-one.vercel.app/
