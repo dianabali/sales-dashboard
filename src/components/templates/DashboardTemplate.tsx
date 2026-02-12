@@ -49,7 +49,7 @@ export const DashboardTemplate: React.FC<DashboardTemplateProps> = ({
         {/* Controls Section */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
           {/* Filter */}
-          <div className="bg-white p-6 rounded-lg shadow-md">
+          <div className="bg-white p-6 rounded-lg shadow-md text-gray-600">
             <Text variant="h3" as="h3" className="mb-4">
               Filter Data
             </Text>
@@ -57,7 +57,7 @@ export const DashboardTemplate: React.FC<DashboardTemplateProps> = ({
           </div>
 
           {/* Chart Type Selector */}
-          <div className="bg-white p-6 rounded-lg shadow-md">
+          <div className="bg-white p-6 rounded-lg shadow-md text-gray-600">
             <Text variant="h3" as="h3" className="mb-4">
               Chart Type
             </Text>
@@ -73,7 +73,7 @@ export const DashboardTemplate: React.FC<DashboardTemplateProps> = ({
         </div>
 
         {/* Chart Section */}
-        <div className="bg-white rounded-lg shadow-md p-6">
+        <div className="bg-white rounded-lg shadow-md p-6 text-gray-500">
           <ChartWrapper data={filteredData} chartType={chartType} />
         </div>
 
@@ -83,7 +83,7 @@ export const DashboardTemplate: React.FC<DashboardTemplateProps> = ({
             <Text variant="caption" className="text-gray-500 block mb-2">
               Total Sales
             </Text>
-            <Text variant="h2" as="h2">
+            <Text variant="h2" as="h2" className="text-gray-500 block">
               {filteredData.reduce((sum, item) => sum + item.sales, 0).toLocaleString()}
             </Text>
           </div>
@@ -91,7 +91,7 @@ export const DashboardTemplate: React.FC<DashboardTemplateProps> = ({
             <Text variant="caption" className="text-gray-500 block mb-2">
               Total Revenue
             </Text>
-            <Text variant="h2" as="h2">
+            <Text variant="h2" as="h2" className="text-gray-500 block">
               ${filteredData.reduce((sum, item) => sum + item.revenue, 0).toLocaleString()}
             </Text>
           </div>
@@ -99,7 +99,7 @@ export const DashboardTemplate: React.FC<DashboardTemplateProps> = ({
             <Text variant="caption" className="text-gray-500 block mb-2">
               Average Sales
             </Text>
-            <Text variant="h2" as="h2">
+            <Text variant="h2" as="h2" className="text-gray-500 block">
               {(
                 filteredData.reduce((sum, item) => sum + item.sales, 0) / (filteredData.length || 1)
               ).toFixed(0)}
