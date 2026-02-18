@@ -46,6 +46,12 @@ export const PieChartComponent: React.FC<PieChartComponentProps> = ({
   const legendVAlign = isSmall ? 'bottom' : 'middle';
   const iconSize = isSmall ? 8 : 12;
   const containerHeight = isSmall ? 260 : 400;
+  const legendWrapperStyle: React.CSSProperties = isSmall
+    ? { display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 8, paddingTop: 8 }
+    : { paddingTop: 0 };
+  const legendItemStyle: React.CSSProperties = isSmall
+    ? { whiteSpace: 'normal', width: 120, overflow: 'visible', textAlign: 'left' }
+    : {};
 
   return (
     <div className="w-full h-full bg-white p-6 rounded-lg shadow-md">
@@ -74,7 +80,7 @@ export const PieChartComponent: React.FC<PieChartComponentProps> = ({
             verticalAlign={legendVAlign as any}
             align={legendAlign as any}
             iconSize={iconSize}
-            wrapperStyle={{ paddingTop: isSmall ? 8 : 0, maxHeight: isSmall ? 80 : undefined, overflow: 'visible' }}
+            wrapperStyle={legendWrapperStyle}
           />
         </PieChart>
       </ResponsiveContainer>

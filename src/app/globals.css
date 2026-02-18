@@ -23,3 +23,21 @@ body {
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
 }
 
+/* Make Recharts legend items wrap and allow label wrapping on small screens */
+@media (max-width: 640px) {
+  .recharts-legend-wrapper {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 8px;
+    padding-top: 8px;
+  }
+
+  .recharts-legend-item {
+    white-space: normal !important;
+    max-width: 120px;
+    text-align: left;
+    overflow: visible;
+  }
+}
+
