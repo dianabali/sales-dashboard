@@ -23,8 +23,8 @@ body {
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
 }
 
-/* Make Recharts legend items wrap and allow label wrapping on small screens */
-@media (max-width: 640px) {
+/* Responsive pie chart for screens < 561px */
+@media (max-width: 561px) {
   .recharts-legend-wrapper {
     display: flex !important;
     flex-wrap: wrap !important;
@@ -35,9 +35,11 @@ body {
 
   .recharts-legend-item {
     white-space: normal !important;
-    max-width: 120px;
-    text-align: left;
-    overflow: visible;
+    font-size: 12px;
+  }
+
+  .recharts-text {
+    font-size: 11px;
   }
 }
 

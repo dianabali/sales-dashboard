@@ -18,6 +18,15 @@ export const PieChartComponent: React.FC<PieChartComponentProps> = ({
   dataKey = 'sales',
   title = 'Sales Distribution - Pie Chart',
 }) => {
+  const [isSmall, setIsSmall] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsSmall(window.innerWidth < 561);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+
   if (!data || data.length === 0) {
     return (
       <div className="flex items-center justify-center h-96 bg-gray-50 rounded-lg">
@@ -31,27 +40,22 @@ export const PieChartComponent: React.FC<PieChartComponentProps> = ({
     value: item[dataKey],
   }));
 
-  const [isSmall, setIsSmall] = useState(false);
-
-  useEffect(() => {
-    const check = () => setIsSmall(window.innerWidth < 640);
-    check();
-    window.addEventListener('resize', check);
-    return () => window.removeEventListener('resize', check);
-  }, []);
-
-  const outerRadius = isSmall ? 60 : 120;
+  const outerRadius = isSmall ? 80 : 120;
+  const containerHeight = isSmall ? 320 : 400;
   const legendLayout = isSmall ? 'horizontal' : 'vertical';
   const legendAlign = isSmall ? 'center' : 'right';
   const legendVAlign = isSmall ? 'bottom' : 'middle';
-  const iconSize = isSmall ? 8 : 12;
-  const containerHeight = isSmall ? 260 : 400;
   const legendWrapperStyle: React.CSSProperties = isSmall
     ? { display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 8, paddingTop: 8 }
     : { paddingTop: 0 };
-  const legendItemStyle: React.CSSProperties = isSmall
-    ? { whiteSpace: 'normal', width: 120, overflow: 'visible', textAlign: 'left' }
-    : {};
+
+  const renderLabel = ({ name, value }: { name: string; value: number }) => {
+    if (isSmall) {
+      // On small screens, hide labels from pie - they'll show in the legend below
+      return null;
+    }
+    return `${name}: ${value}`;
+  };
 
   return (
     <div className="w-full h-full bg-white p-6 rounded-lg shadow-md">
@@ -63,9 +67,9 @@ export const PieChartComponent: React.FC<PieChartComponentProps> = ({
           <Pie
             data={chartData}
             cx="50%"
-            cy={isSmall ? '42%' : '50%'}
+            cy={isSmall ? '45%' : '50%'}
             labelLine={false}
-            label={({ name, value }) => `${name}: ${value}`}
+            label={renderLabel}
             outerRadius={outerRadius}
             fill="#8884d8"
             dataKey="value"
@@ -79,11 +83,25 @@ export const PieChartComponent: React.FC<PieChartComponentProps> = ({
             layout={legendLayout as any}
             verticalAlign={legendVAlign as any}
             align={legendAlign as any}
-            iconSize={iconSize}
             wrapperStyle={legendWrapperStyle}
           />
         </PieChart>
       </ResponsiveContainer>
+      {isSmall && (
+        <div className="mt-4 grid grid-cols-2 gap-2">
+          {chartData.map((item, index) => (
+            <div key={item.name} className="text-sm p-2 bg-gray-50 rounded flex items-start gap-2 overflow-hidden">
+              <span
+                className="inline-block w-2 h-2 rounded-sm flex-shrink-0 mt-1"
+                style={{ background: COLORS[index % COLORS.length] }}
+              />
+              <span className="text-gray-700 break-words overflow-hidden">
+                <strong>{item.name}:</strong> {item.value}
+              </span>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
