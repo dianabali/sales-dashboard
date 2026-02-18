@@ -40,23 +40,24 @@ export const PieChartComponent: React.FC<PieChartComponentProps> = ({
     return () => window.removeEventListener('resize', check);
   }, []);
 
-  const outerRadius = isSmall ? 70 : 120;
+  const outerRadius = isSmall ? 60 : 120;
   const legendLayout = isSmall ? 'horizontal' : 'vertical';
   const legendAlign = isSmall ? 'center' : 'right';
   const legendVAlign = isSmall ? 'bottom' : 'middle';
   const iconSize = isSmall ? 8 : 12;
+  const containerHeight = isSmall ? 260 : 400;
 
   return (
     <div className="w-full h-full bg-white p-6 rounded-lg shadow-md">
       <Text variant="h3" as="h2" className="mb-4">
         {title}
       </Text>
-      <ResponsiveContainer width="100%" height={400}>
+      <ResponsiveContainer width="100%" height={containerHeight}>
         <PieChart>
           <Pie
             data={chartData}
             cx="50%"
-            cy={isSmall ? '45%' : '50%'}
+            cy={isSmall ? '42%' : '50%'}
             labelLine={false}
             label={({ name, value }) => `${name}: ${value}`}
             outerRadius={outerRadius}
