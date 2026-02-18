@@ -30,6 +30,12 @@ export const DashboardTemplate: React.FC<DashboardTemplateProps> = ({
     }, 300);
   };
 
+  const handleClearFilter = () => {
+    setIsLoading(false);
+    setFilteredData(initialData);
+    onFilterApply?.(0, initialData);
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
       {/* Header */}
@@ -53,7 +59,7 @@ export const DashboardTemplate: React.FC<DashboardTemplateProps> = ({
             <Text variant="h3" as="h3" className="mb-4">
               Filter Data
             </Text>
-            <FilterInput onApplyFilter={handleApplyFilter} isLoading={isLoading} />
+            <FilterInput onApplyFilter={handleApplyFilter} onClear={handleClearFilter} isLoading={isLoading} />
           </div>
 
           {/* Chart Type Selector */}
