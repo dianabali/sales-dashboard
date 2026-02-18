@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { PieChart, Pie, Cell, Legend, Tooltip, ResponsiveContainer } from 'recharts';
 import { SalesData } from '@/lib/types';
 import { Text } from '@/components/atoms';
@@ -31,6 +31,21 @@ export const PieChartComponent: React.FC<PieChartComponentProps> = ({
     value: item[dataKey],
   }));
 
+  const [isSmall, setIsSmall] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsSmall(window.innerWidth < 640);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+
+  const outerRadius = isSmall ? 70 : 120;
+  const legendLayout = isSmall ? 'horizontal' : 'vertical';
+  const legendAlign = isSmall ? 'center' : 'right';
+  const legendVAlign = isSmall ? 'bottom' : 'middle';
+  const iconSize = isSmall ? 8 : 12;
+
   return (
     <div className="w-full h-full bg-white p-6 rounded-lg shadow-md">
       <Text variant="h3" as="h2" className="mb-4">
@@ -41,10 +56,10 @@ export const PieChartComponent: React.FC<PieChartComponentProps> = ({
           <Pie
             data={chartData}
             cx="50%"
-            cy="50%"
+            cy={isSmall ? '45%' : '50%'}
             labelLine={false}
             label={({ name, value }) => `${name}: ${value}`}
-            outerRadius={120}
+            outerRadius={outerRadius}
             fill="#8884d8"
             dataKey="value"
           >
@@ -53,7 +68,13 @@ export const PieChartComponent: React.FC<PieChartComponentProps> = ({
             ))}
           </Pie>
           <Tooltip formatter={(value) => `${value}`} />
-          <Legend />
+          <Legend
+            layout={legendLayout as any}
+            verticalAlign={legendVAlign as any}
+            align={legendAlign as any}
+            iconSize={iconSize}
+            wrapperStyle={{ paddingTop: isSmall ? 8 : 0, maxHeight: isSmall ? 80 : undefined, overflow: 'visible' }}
+          />
         </PieChart>
       </ResponsiveContainer>
     </div>
